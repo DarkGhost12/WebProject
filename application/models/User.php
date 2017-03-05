@@ -41,7 +41,6 @@
             $result = $result->result();
             isset($result[0]) ? $return = true : $return = false;
             if($return){
-                $data['message'] = 'Vous êtes connecté';
                 $this->session;
                 $session_infos = array(
                     'login' => $result[0]->UserEmail,

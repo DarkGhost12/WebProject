@@ -63,8 +63,6 @@ class UserManagement extends CI_Controller {
     
     public function disconnect(){
         $this->session->sess_destroy();
-        redirect('');
-        //$this->load->view('welcome_message');
     }
 
 }

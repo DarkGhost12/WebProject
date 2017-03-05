@@ -34,4 +34,19 @@ class ProductManagement extends CI_Controller {
         $this->load->view('welcome_message', $data);
     }
 
+    public function show_order_product(){
+        $this->load->model('user','', TRUE);
+        $this->load->model('product','', TRUE);
+        if(isset($_SESSION['login'])){
+            $id = $_GET['id'];
+            $user = $this->user->getUserIdByLogin($_SESSION['login']);
+            $product = $this->product->getProductByID($id);
+        }else {
+            $message = 'You are not logged in. <br/>';
+            $message .= 'Return to <a href="'.base_url().'">index page</a>';
+            $data = array('message' => $message);
+            $this->load->view('welcome_message', $data);
+        }
+    }
+
 }

@@ -67,5 +67,12 @@
             }
             return $productsCounter;
         }
+
+        public function getProductByID($id){
+            $sql = "SELECT ProductCounter FROM Products_List WHERE ProductID = $id";
+            $result = $this->db->query($sql);
+            $product = $result->result();
+            return $product;
+        }
 }
 ?>

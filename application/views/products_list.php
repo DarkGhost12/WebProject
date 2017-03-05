@@ -1,6 +1,6 @@
 <head>
     <?php echo css('main');
-          include '/u03/html/ieps/assets/header/header.php';
+          include 'application/views/assets/header/header.php';
     ?>
 </head>
 <body>
