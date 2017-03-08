@@ -4,10 +4,10 @@
 
         public $RPPID;
         public $RUserID;
-        public $ReservationQuantity;
+        public $RQuantity;
         public $RDelivery;
         public $RPickup;
-        public $RPUDelDTG;
+        public $RDateFinished;
         public $RComment;
 
         public function __construct(){
@@ -16,8 +16,6 @@
  
         public function insert(){
             $this->db->insert('Reservations', $this);
-            $id = $this->db->insert_id();
-            return $id;
         }
 
         public function update(){
@@ -28,16 +26,26 @@
 
         }
 
-        public function addProduct($args){
+        public function addReservation($args){
             extract($args);
             $product = new Product();
-            $this->load->model('productor','', TRUE);
-            $this->load->model('productor_product', '', TRUE);
+            $product->RPPID = $prodID;
+            $product->RUserID = $userID;
+            $product->RQuantity = $quantity;
+            if($deliver){
+                $product->RDelivery = 1;
+                $product->RPickup = 0; 
+            }
+            else{
+                $product->RDelivery = 0; 
+                $product->RPickup = 1;
+            }
+            $product->insert();
             return true;
         }
 
-        public function getProductByID($id){
-            $sql = "SELECT ProductCounter FROM Products_List WHERE ProductID = $id";
+        public function getReservationByID($id){
+            $sql = "SELECT * FROM Reservations WHERE ReservationID = $id";
             $result = $this->db->query($sql);
             $product = $result->result();
             return $product;
