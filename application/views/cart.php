@@ -5,10 +5,10 @@
 </head>
 <body>
 <?php
-    echo form_open(base_url().'CartManagement/updateCart'); ?>
+    echo form_open(base_url().'CartManagement/update_cart'); ?>
     <table cellpadding="6" cellspacing="1" style="width:100%" border="0">
         <tr>
-            <th>QTY</th>
+            <th>Quantity</th>
             <th>Item Description</th>
         </tr>
         <?php $i = 1; ?>
@@ -24,4 +24,5 @@
         } ?>
     </table>
     <p><?php echo form_submit('', 'Update your Cart'); ?></p>
+    <p><input type="button" value="Order" onclick="window.location = '../ReservationManagement/add_reservation'"></p>
 </body>

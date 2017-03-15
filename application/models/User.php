@@ -44,6 +44,7 @@
                 $this->session;
                 $session_infos = array(
                     'login' => $result[0]->UserEmail,
+                    'id' => $result[0]->UserID,
                 );
                 $this->session->set_userdata($session_infos);
             }

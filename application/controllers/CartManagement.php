@@ -23,16 +23,16 @@ class CartManagement extends CI_Controller {
         $this->load->view('cart');
     }
 
-    public function update_cart($args){
-        extract($args);
-        $data = array(
-            array(
-                'rowid'   => $rowid,
-                'qty'     => $qty,
-            ),
-        );
-
+    public function update_cart(){
+        $data = array();
+        foreach ($_POST as $item) {
+            $data[] = array(
+                'rowid' => $item['rowid'],
+                'qty' => $item['qty'],
+            );
+        }
         $this->cart->update($data);
+        $this->load->view('cart');
     }
 
 }
