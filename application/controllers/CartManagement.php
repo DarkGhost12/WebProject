@@ -28,4 +28,16 @@ class CartManagement extends CI_Controller {
         $this->load->view('welcome_message', $data);
     }
 
+    public function update_cart($args){
+        extract($args);
+        $data = array(
+            array(
+                'rowid'   => $rowid,
+                'qty'     => $qty,
+            ),
+        );
+
+        $this->cart->update($data);
+    }
+
 }

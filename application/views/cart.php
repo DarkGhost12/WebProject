@@ -18,13 +18,6 @@
                 <td><?php echo form_input(array('name' => $i.'[qty]', 'value' => $items['qty'], 'maxlength' => '3', 'size' => '5')); ?></td>
                 <td>
                     <?php echo $items['name']; ?>
-                    <?php if ($this->cart->has_options($items['rowid']) == TRUE){ ?>
-                        <p>
-                            <?php foreach ($this->cart->product_options($items['rowid']) as $option_name => $option_value){ ?>
-                                <strong><?php echo $option_name; ?>:</strong> <?php echo $option_value; ?><br />
-                            <?php } ?>
-                        </p>
-                    <?php } ?>
                 </td>
             </tr>
             <?php $i++;

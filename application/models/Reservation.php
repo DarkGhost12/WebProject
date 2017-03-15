@@ -1,6 +1,6 @@
 <?php
 
-    class Product extends CI_Model{
+    class Reservation extends CI_Model{
 
         public $RPPID;
         public $RUserID;
