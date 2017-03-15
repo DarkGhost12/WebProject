@@ -22,7 +22,7 @@
                 <input type="text" class="form-control" name="ProductDesc" id="ProductDesc" required/>
             </div>
             <div class="form-group">
-                <label for="ProductQty">Product quantity <!-- Add JS to choose proper counter. Use $productsCounter. -->
+                <label for="ProductQty">Product quantity
                 </label>
                 <input type="number" class="form-control" name="ProductQty" id="ProductQty" required/>
             </div>

@@ -69,8 +69,10 @@
         }
 
         public function getProductByID($id){
-            $sql = "SELECT ProductCounter FROM Products_List WHERE ProductID = $id";
-            $result = $this->db->query($sql);
+            $this->db->select('*');
+            $this->db->from('Products');
+            $this->db->where("ProductID = $id");
+            $result = $this->db->get();
             $product = $result->result();
             return $product;
         }
