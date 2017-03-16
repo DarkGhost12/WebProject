@@ -47,4 +47,14 @@ class ProductManagement extends CI_Controller {
         $this->load->view('product_order', $data);
     }
 
+    public function get_product_by_name(){
+        $product = new Product();
+        $args = array(
+            'name' => $_POST['search'],
+        );
+        $products = $product->getProductByName($args);
+        $data = array('products' => $products);
+        $this->load->view('welcome_message', $data);
+    }
+
 }

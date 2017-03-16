@@ -26,21 +26,21 @@
 
         }
 
-        public function addReservation($args){
+        public function add_reservation($args){
             extract($args);
-            $product = new Product();
-            $product->RPPID = $prodID;
-            $product->RUserID = $userID;
-            $product->RQuantity = $quantity;
-            if($deliver){
-                $product->RDelivery = 1;
-                $product->RPickup = 0; 
+            $reservation = new Reservation();
+            $reservation->RPPID = $order_id;
+            $reservation->RUserID = $order_user;
+            $reservation->RQuantity = $order_qty;
+            if(isset($order_deliver) && $order_deliver == 1){
+                $reservation->RDelivery = 1;
+                $reservation->RPickup = 0; 
             }
             else{
-                $product->RDelivery = 0; 
-                $product->RPickup = 1;
+                $reservation->RDelivery = 0; 
+                $reservation->RPickup = 1;
             }
-            $product->insert();
+            $reservation->insert();
             return true;
         }
 

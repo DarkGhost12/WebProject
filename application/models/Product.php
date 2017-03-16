@@ -71,10 +71,35 @@
         public function getProductByID($id){
             $this->db->select('*');
             $this->db->from('Products');
-            $this->db->where("ProductID = $id");
+            $this->db->where("ProductID" ,$id);
             $result = $this->db->get();
             $product = $result->result();
             return $product;
+        }
+       
+        public function getProductByName($args){
+            extract($args);
+            $this->db->select('*');
+            $this->db->from('Products');
+            $this->db->where("ProductDenom", $name);
+            $result = $this->db->get();
+            $product = $result->result();
+            return $product;
+        }
+
+ 
+        public function reduceStock($args){
+            extract($args);
+            $this->db->select('ProductQuantity');
+            $this->db->from('Products');
+            $this->db->where('ProductID',  $id);
+            $query = $this->db->get();
+            $result = $query->result();
+            $stock = $result[0]->ProductQuantity;
+            $newStock = $stock - $qty;
+            $this->db->set('ProductQuantity', $newStock);
+            $this->db->where('ProductID', $id);
+            $this->db->update('Products');
         }
 }
 ?>

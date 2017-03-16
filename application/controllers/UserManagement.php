@@ -19,34 +19,21 @@ class UserManagement extends CI_Controller {
     }
 
     public function register(){
-        $email = $_POST["email"];
-        $email2 = $_POST["email2"];
-        $username = $_POST['username'];
-        $lastname = $_POST["lastname"];
-        $firstname = $_POST["firstname"];
-        $address = $_POST["address"];
-        $zip = $_POST["zip"];
-        $city = $_POST["city"];
-        $phone = $_POST["phone"];
-        $password = $_POST["pwd"];
-        $password2 = $_POST["pwd2"];
-        $vat = $_POST["vat"];
         $user = new User();
-        $user->UserEmail = $email;
-        $user->UserLastname = $lastname;
-        $user->UserFirstname = $firstname;
-        $user->UserNickname = $username;
-        $user->UserPhone = $phone;
-        $user->UserPhone2 = '';
-        $user->UserAddress = $address;
-        $user->UserZip = $zip;
-        $user->UserCity = $city;
-        $user->password = $password;
-        $user->UserComment = "";
-        $user->UserEnabled = 1;
-        $user->insert();
+        $args = array(
+            'email' => $_POST['email'],
+            'lastname' => $_POST['lastname'],
+            'firstname' => $_POST['firstname'],
+            'username' => $_POST['username'],
+            'phone' => $_POST['phone'],
+            'address' => $_POST['address'],
+            'zip' => $_POST['zip'],
+            'city' => $_POST['city'],
+            'password' => md5($_POST['pwd']),
+        );
+        $user->register($args);
         $data = array();
-        $data['message'] = "Votre inscription est enregistrée. Vérifiez vos emails.";
+        $data['message'] = "Your registration has been accepted.";
         $this->load->view('welcome_message',$data);        
     }
 
@@ -54,15 +41,17 @@ class UserManagement extends CI_Controller {
         $this->load->model('user','',TRUE);
         $result = $this->user->login($_POST['login'], $_POST['password']);
         if($result && $result != ''){
-            $data['message'] = 'Vous êtes connecté';
+            $data['message'] = 'You are connected.';
         } else{
-            $data['message'] = 'Cet utilisateur ou ce password est erroné.';
+            $data['message'] = 'This user or password does not exist.';
         }
         $this->load->view('welcome_message', $data);
     }
     
     public function disconnect(){
         $this->session->sess_destroy();
+        $data = array ('message' => 'You have been logged out');
+        $this->load->view('welcome_message', $data);
     }
 
 }

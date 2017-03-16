@@ -35,7 +35,7 @@
         public function login($login, $password){
             $return = false;
             $login = $_POST['login'];
-            $password = $_POST['password'];
+            $password = md5($_POST['password']);
             $sql = "SELECT * FROM Users WHERE (UserEmail='$login' OR UserNickname='$login') AND password='$password'";
             $result = $this->db->query($sql);
             $result = $result->result();
@@ -65,6 +65,24 @@
             $return = $result->result();
             isset($return[0]) ? $return = $return[0] : $return = false;
             return $return;
+        }
+       
+        public function register($args){
+            extract($args);
+            $user = new User();
+            $user->UserEmail = $email;
+            $user->UserLastname = $lastname;
+            $user->UserFirstname = $firstname;
+            $user->UserNickname = $username;
+            $user->UserPhone = $phone;
+            $user->UserPhone2 = '';
+            $user->UserAddress = $address;
+            $user->UserZip = $zip;
+            $user->UserCity = $city;
+            $user->password = $password;
+            $user->UserComment = "";
+            $user->UserEnabled = 1;
+            $user->insert();
         }
 
     }

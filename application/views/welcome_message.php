@@ -20,18 +20,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <?php if(isset($message)){
                         echo "<p>$message</p>";
                       }
-                      if(isset($products)){
-						foreach($products as $product){
-							echo "<div class='col-md-4'>";
-							echo $product->ProductDenom."<br/>";
-							echo $product->ProductDescription."<br/>";
-							echo $product->ProductQuantity."<br/>";
-							echo $product->ProductQuality."<br/>";
-                            echo "<a class=\"btn btn-default\" href=\"".base_url()."ProductManagement/show_order_product?id=".$product->ProductID."\">Order</a>";
-							echo "</div>";
-						}
-                       }
-                ?>
+                      if(isset($_SESSION['id'])){
+                          if(isset($products)){
+                            foreach($products as $product){
+				echo "<div class='col-md-4'>";
+				echo $product->ProductDenom."<br/>";
+				echo $product->ProductDescription."<br/>";
+				echo $product->ProductQuantity."<br/>";
+				echo $product->ProductQuality."<br/>";
+                                echo "<a class=\"btn btn-default\" href=\"".base_url()."ProductManagement/show_order_product?id=".$product->ProductID."\">Order</a>";
+				echo "</div>";
+		            }
+                         }
+                      }else{?>
+                         <p> You have to be logged in to see the products. </p> 
+                      <?php } ?>
             </div>
         </div>
     </body>

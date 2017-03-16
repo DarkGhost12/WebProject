@@ -25,12 +25,11 @@
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav">
-                      <!--        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>-->
 
                             </ul>
-                            <form class="navbar-form navbar-left">
+                            <form class="navbar-form navbar-left" action="ProductManagement/get_product_by_name" method="POST">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Search">
+                                    <input type="text" class="form-control" placeholder="Search" name="search">
                                 </div>
                                 <button type="submit" class="btn btn-default">Submit</button>
                             </form>
@@ -39,10 +38,10 @@
                                 <li><a class="btn btn-default" href="<?php echo base_url(); ?>UserManagement/show_register">Inscription</a></li>
                                 <li><a class="btn btn-info" data-toggle="modal" data-target="#lf">login</a></li>
                                 <?php } else { ?>
-                                <li><a class="btn btn-default" href="<?php echo base_url()?>ProductManagement/show_add_product">Add a product</a></li>
-                                <li><a class="btn btn-info" href="<?php echo base_url()?>UserManagement/disconnect">Disconnect</a></li>
+                                <li><a class="btn btn-default" href="<?php echo base_url();?>ProductManagement/show_add_product">Add a product</a></li>
+                                <li><a class="btn btn-info" href="<?php echo base_url();?>UserManagement/disconnect">Disconnect</a></li>
                                 <?php }?>
-                                <li><button class="btn btn-default btn-lg"><span class="glyphicon glyphicon-shopping-cart "></span></button></li>
+                                <li><a href="<?php echo base_url();?>CartManagement/show_cart"<button class="btn btn-default btn-lg"><span class="glyphicon glyphicon-shopping-cart "></span></button></a></li>
                             </ul>
                         </div><!-- /.navbar-collapse -->
                     </div><!-- /.container-fluid -->
